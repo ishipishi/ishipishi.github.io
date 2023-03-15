@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<head>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap" rel="stylesheet">
+<style>
+body {
+  font-family: "EB Garamond";
+  margin: 0 auto;
+  max-width: 800px;
+  background: rgba(186, 165, 255, 1);
+}
+div {
+  height: 300px;
+  background-size: 100% 100%;
+  position: relative;
+  margin: 40px 0 0 0;
+  border-radius: 12px;
+}
+h1 {
+  font-family: "EB Garamond";
+  text-align: center;
+  font-size: 75px;
+  color: rgba(94, 72, 174);
+  margin: 60px 0 0 0;
+}
+h2 {
+  text-align: center;
+  color: rgba(96, 72, 174);
+  margin: 0px 0 70px 0;
+}
+p {
+  color: rgba(247,240,188,1);
+  background: black;
+  background: linear-gradient(bottom, rgba(238, 130, 238,.1), rgba(0,0,0,.4));
+  background: -webkit-linear-gradient(bottom, rgba(96, 72, 174,1), rgba(200,190,233,.4));
+  background: -moz-linear-gradient(bottom, rgba(200,190,233,1), rgba(0,0,0,.4));
+  padding: 10px;
+  line-height: 28px;
+  text-align: justify;
+  position: absolute;
+  bottom: 0;
+  margin: 0;
+  height: 30px;
+  transition: height .5s;
+  -webkit-transition: height .5s;
+  -moz-transition: height .5s;
+  font-family: 'Shadows Into Light', cursive;
+}
+
+small {
+  opacity: 0;
+}
+
+.show-description p {
+  height: 150px;
+}
+
+.show-description small {
+  opacity: 1;
+}
+
+.first{
+  background-image: url("https://s.hdnux.com/photos/01/04/67/14/18051858/4/rawImage.jpg");
+}
+.second{
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAJNd3pQJW_AOBjP3YGlTmorhwXqHZh-9yPw&usqp=CAU");
+}
+.dessert{
+  background-image: url("https://www.2foodtrippers.com/wp-content/uploads/2019/06/Cappuccino-at-Royal-Rawness-in-Lisbon.jpg.webp");
+}
+.price {
+  float: right;
+}
+
+
+input {
+	font-size: 22px;
+}
+@media (max-width: 500px) {
+  h1 {
+    font-size: 50px;
+    margin-top: 20px;
+    line-height: 40px;
+  }
+  h2 {
+    font-size: 20px;
+    margin: 20px 0 30px 0;
+  }
+  div {
+    margin: 20px 12px 0 12px;
+  }
+  p {
+    font-size: 20px;
+    line-height: 24px;
+  }
+  small {
+    font-size: 16px;
+  }
+
+  
+}
+
+</style>
+
+</head>
+
+<body>
+<h1>Cafe Luna</h1>
+<h2>A Restaurant Under the Stars</h2>
+<div class="first">
+	<input class="quantities"type="number" min="0" style="width: 50px">
+  <p>Fell From the Sky French Toast <span class="price">$20</span><br />
+  <small>French toast with ice cream and cinnomon sprinkled on top. Sweet and Savory, gaurunteed fresh!!! (May cause heart disease.) (We are NOT responsible for any damage.) </small></p>
+</div>
+
+<div class="second">
+	<input class="quantities"type="number" min="0" style="width: 50px">
+  <p>Starry Night Waffles<span class="price">$25</span><br />
+  <small>Made with oat milk and a lot of butter, this waffle will surely give you diabetes. It's still amazing with it's lovely texture. Crispy and well coated with crystal heart attack.</small></p>
+</div>
+<br><br>
+<div class="dessert">
+	<input class="quantities"type="number" min="0" style="width: 50px">
+  <p>Coffee<span class="price">$15</span><br />
+  <small>Very good coffee. Made with a lot of chemicals used to clean doggy doo. Very fresh and sweet. 10/10. (May cause migraines and various other health problems)</small></p>
+</div>
+<br><br>
+<input id="Name" placeholder="name">
+<input id="Email" placeholder="Your email">
+<input id="submit" type="submit">
+<br><br>
+
+
+
+<script>
+  $('div').on('click', function() {
+      $(this).toggleClass('show-description');
+  });
+</script>
+
+</body>
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js";
+
+  import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-database.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyA6EeZtEsi42Xs96sMgygDi_oAu-4_OsMM",
+    authDomain: "peepeepoopoo-7b16a.firebaseapp.com",
+    projectId: "peepeepoopoo-7b16a",
+    storageBucket: "peepeepoopoo-7b16a.appspot.com",
+    messagingSenderId: "946311483853",
+    appId: "1:946311483853:web:386caa103ea6f55449b484",
+    measurementId: "G-MB94PDYEDS"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+  const Name = document.querySelector("#Name") 
+  const Email = document.querySelector("#Email")
+  const quantities = document.querySelectorAll(".quantities")
+  document.querySelector('#submit').addEventListener('click', Submit)
+  const itemsList = ["French Toast", "Waffles", "Coffee"]
+  const prices = document.querySelectorAll(".price")
+  
+  
+  function Submit() {
+  const timestamp = buildTimestamp()
+  let total = 0 
+  let cart = { }
+  for  (let i=0; i<quantities.length; i=i+1) {
+  	if (quantities[i].value != "0" && quantities[i].value != "") {	
+let price = prices[i].innerHTML.replace('$', '')
+ total = total + quantities[i].value * price 
+  		cart[itemsList[i]] = parseInt(quantities[i].value) 
+  	}
+  	quantities[i].value = ""
+  }
+  
+  set(ref(db, timestamp), {
+	  Name: Name.value,
+      email: Email.value,
+	  cart: cart,
+	  totalPrice: total,
+	  paid: "not yet",
+  });
+
+  Name.value = ""
+  Email.value = ""
+}
+function buildTimestamp() {
+	  const now = new Date();
+	  let timestamp = now.getFullYear().toString() + "/";
+	  //const month = now.toLocaleString('default', { month: 'long' });
+
+	  let month = now.getMonth()+1   //add 1 because Javascript uses 0 for January
+	  month = month.toString()
+	  month = addLeadingZero(month)
+	  timestamp += month + "/"; 
+
+	  let date = now.getDate().toString()
+	  date = addLeadingZero(date)
+	  timestamp += date + "/";
+
+	  let hours = now.getHours().toString()
+	  hours = addLeadingZero(hours)
+	  timestamp += hours + ":";
+
+	  let minutes = now.getMinutes().toString()
+	  minutes = addLeadingZero(minutes)
+	  timestamp += minutes + ":";
+
+	  let seconds = now.getSeconds().toString()
+	  seconds = addLeadingZero(seconds)
+	  timestamp += seconds;
+
+	  return timestamp
+	}
+
+	function addLeadingZero(units) {
+		if (units.length < 2) {
+			units = "0" + units
+		}
+		return units
+	}
+  
+  
+  
+  
+  
+  
+</script>
